@@ -40,10 +40,10 @@ function PaintTableGraph(y,x) {
 
 /////////////////////////////////// Таблица с коэффициентами
 function PaintTableCoeff(y,x) {
-  var CoeffName = [0,'CR3',
+  var CoeffName = [0,'CR3<input class="CRInput" value="3">',
                    'CR4',
                    'Hirshman-herfindahl',
-                   'Hannah-Kay a=2',
+                   'Hannah-Kay a=<input class="HannahInput" value="2">',
                    'Rosenbluth/Hall-Tideman',
                    'Entropy',
                    'Variance of logs',

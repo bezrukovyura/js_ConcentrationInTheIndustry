@@ -1,4 +1,6 @@
 $(document).ready(function() {
+  document.CR_N = 3;
+  document.HannahKay = 2;
   //*****************************************************
   //создали матрицу 30х30, заполненную -1, чтобы записывать в нее значения из фирм
   //*****************************************************
@@ -29,6 +31,26 @@ $(document).ready(function() {
     SetTableData(masResult);
   });
   
+  //*****************************************************
+  // Действия при изменении коэффициентов CR и Hannah-Kay 
+  //*****************************************************
+  $( ".CRInput" ).keyup(function() { // CR N
+    val = $(this).val();
+    if(val != null || val*1 >0 ) {
+      document.CR_N = val*1;
+      GetSolution(masResult,mas)
+    } 
+  });
+  $( ".HannahInput" ).keyup(function() { // CR N
+    val = $(this).val();
+    if(val != null || val*1 >0 ) {
+      document.HannahKay = val*1;
+      GetSolution(masResult,mas)
+    } 
+  });
+  
+  
+
   
   //*****************************************************
   // Находим данные для таблички "Результаты симуляции"
@@ -219,15 +241,7 @@ $(document).ready(function() {
       }
     }
     // ------ 3 firm (CR3) ------- = 0
-    for(i=0;i<window.industrys;i++){
-      summ = null;
-      for(j=0;j<3;j++){
-        if( masResult[i][j] > 0 ) {
-          summ += masResult[i][j]; 
-        }
-      }
-      coeffic[i][0] = summ;
-    }
+    coeffic = CR_N(masResult,coeffic, document.CR_N);
     // ------- 4 firm (CR4) ------- = 1
     for(i=0;i<window.industrys;i++){
       summ = null;
@@ -253,12 +267,7 @@ $(document).ready(function() {
     }
     
     // -- Hannah-Kay (NE) a=2 -- = 3
-    for(i=0;i<window.industrys;i++){
-      if( coeffic[i][2] > 0 ) {
-        coeffic[i][3] = 1/coeffic[i][2];
-      }
-    }
-    
+    coeffic = HannahKay(masResult, coeffic, 3, document.HannahKay);
     // -- Rosenbluth hall--- = 4
     for(i=0;i<window.industrys;i++){ 
       sum = null;
@@ -348,7 +357,34 @@ $(document).ready(function() {
     }
   }
   
+  
+  function CR_N(masResult,coeffic,N=2){
+    for(i=0;i<window.industrys;i++){
+      summ = null;
+      for(j=0;j<N;j++){
+        if( masResult[i][j] > 0 ) {
+          summ += masResult[i][j]; 
+        }
+      }
+      coeffic[i][0] = summ;
+    }
+    return coeffic;
+  }
 
+  function HannahKay(masResult, coeffic, PositionInTable, N=2){
+    for(i=0;i<window.industrys;i++){
+      summ = null;
+      for(j=0;j<window.firms;j++){
+        if( masResult[i][j] ) {
+          summ += Math.pow(masResult[i][j],N); 
+        }
+      }
+      if(summ){
+        coeffic[i][PositionInTable] = summ/10000;
+      }
+    }
+    return coeffic;
+  }
   
 });  
   

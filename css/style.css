@@ -70,3 +70,8 @@ div#LorenzCurves, div#ConcentrationCurves {
 .img {
     position: relative;
 }
+.HannahInput,
+.CRInput {
+    margin: 0 0 0 5px;
+    width: 25px;
+}

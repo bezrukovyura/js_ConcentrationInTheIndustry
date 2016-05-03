@@ -38,14 +38,14 @@ $(document).ready(function() {
     val = $(this).val();
     if(val != null || val*1 >0 ) {
       document.CR_N = val*1;
-      GetSolution(masResult,mas)
+      GetSolution(masResult,mas);
     } 
   });
   $( ".HannahInput" ).keyup(function() { // CR N
     val = $(this).val();
     if(val != null || val*1 >0 ) {
       document.HannahKay = val*1;
-      GetSolution(masResult,mas)
+      GetSolution(masResult,mas);
     } 
   });
   
@@ -358,7 +358,7 @@ $(document).ready(function() {
   }
   
   
-  function CR_N(masResult,coeffic,N=2){
+  function CR_N(masResult,coeffic,N){
     for(i=0;i<window.industrys;i++){
       summ = null;
       for(j=0;j<N;j++){
@@ -371,7 +371,7 @@ $(document).ready(function() {
     return coeffic;
   }
 
-  function HannahKay(masResult, coeffic, PositionInTable, N=2){
+  function HannahKay(masResult, coeffic, PositionInTable, N){
     for(i=0;i<window.industrys;i++){
       summ = null;
       for(j=0;j<window.firms;j++){

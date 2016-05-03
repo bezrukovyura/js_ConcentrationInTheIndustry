@@ -1,0 +1,41 @@
+<head>
+  <meta charset="utf-8">
+  <link rel="shortcut icon" href="css/fmb.png" type="image/png">
+  <title>Концентрация индустрии</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <script src="js/jquery.js"></script>
+  <script src="js/view.js"></script>
+  <script src="js/action.js"></script>
+</head>
+
+<body>
+  <div class="param">
+    <input id="industrys" placeholder="Количество индустрий" />
+    <input id="firms" placeholder="Количество фирм" />
+    <div onclick="linking();">Применить</div>
+  </div>
+  <div class="tables">
+    <div>
+      Данные о фирмах
+      <table id="TableSource"></table>
+    </div>
+    <div class="img opacity" >
+      <div class="over"></div>
+      Результаты симуляции
+      <table id="TableGraph"></table>
+    </div>
+    <div class="img opacity" >
+      <div class="over"></div>
+      Коэффициенты
+      <table id="TableCoeff"></table>
+
+    </div>
+  </div>
+  
+  <div class="img opacity" id="ConcentrationCurves" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+  
+  <div class="img opacity" id="LorenzCurves" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+  
+</body>
+

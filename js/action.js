@@ -386,5 +386,18 @@ $(document).ready(function() {
     return coeffic;
   }
   
+$("#FontFamily").click(function() {
+  tmp = '<style> body *{ font-family:';
+  tmp += $("#FontFamily").val();
+  tmp += ' !important;}</style>';
+  $( "#del_font_family" ).html(tmp);
+});
+$("#FontSize").click(function() {
+  tmp = '<style> body *{ font-size:';
+  tmp += $("#FontSize").val();
+  tmp += 'px !important;}</style>';
+  $( "#del_font_size" ).html(tmp);
+});
+  
 });  
   

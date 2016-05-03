@@ -1,10 +1,7 @@
 input {
   width: 64px;
 }
-body {
-    font-family: verdana;
-    font-size: 14px;
-}
+
 div#LorenzCurves, div#ConcentrationCurves {
     width: 47%;
     float: left;
@@ -47,9 +44,7 @@ div#LorenzCurves, div#ConcentrationCurves {
     box-shadow: 0 0 2px black;
     margin: 5px 5px;
 }
-.tables td {
-    font-size: 12px;
-}
+
 .tables {
     overflow: hidden;
     width: 100%;

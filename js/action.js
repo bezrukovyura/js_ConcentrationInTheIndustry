@@ -108,7 +108,7 @@ $(document).ready(function() {
           chart: { type: 'spline' },
           title: { text: 'Concentration Curves'  },
           xAxis: { type: 'number',title: { text: 'Продажи' } },
-          yAxis: { title: { text: 'Snow depth (m)' }, min: 0 },
+          yAxis: { title: { text: '' }, min: 0 },
           tooltip: {
               headerFormat: '<b>{series.name}</b><br>',
               pointFormat: '{point.x:%e. %b}: {point.y:.2f} m'
@@ -210,7 +210,7 @@ $(document).ready(function() {
     $(function () {    
       $('#LorenzCurves').highcharts({
           chart: { type: 'spline' },
-          title: { text: 'Lorenc Сurves'  },
+          title: { text: 'Lorenz Сurves'  },
           xAxis: { type: 'number',title: { text: '' } },
           yAxis: { title: { text: '' }, min: 0 },
           tooltip: {
@@ -242,18 +242,8 @@ $(document).ready(function() {
     }
     // ------ 3 firm (CR3) ------- = 0
     coeffic = CR_N(masResult,coeffic, document.CR_N);
-    // ------- 4 firm (CR4) ------- = 1
-    for(i=0;i<window.industrys;i++){
-      summ = null;
-      for(j=0;j<4;j++){
-        if( masResult[i][j] > 0 ) {
-          summ += masResult[i][j]; 
-        }
-      }
-      coeffic[i][1] = summ; 
-    }
     
-    // -- Hirschman-Herfindahl -- = 2
+    // -- Hirschman-Herfindahl -- = 1
     for(i=0;i<window.industrys;i++){
       summ = null;
       for(j=0;j<window.firms;j++){
@@ -262,13 +252,13 @@ $(document).ready(function() {
         }
       }
       if(summ){
-        coeffic[i][2] = summ/10000; 
+        coeffic[i][1] = summ/10000; 
       }
     }
     
-    // -- Hannah-Kay (NE) a=2 -- = 3
-    coeffic = HannahKay(masResult, coeffic, 3, document.HannahKay);
-    // -- Rosenbluth hall--- = 4
+    // -- Hannah-Kay (NE) a=2 -- = 2
+    coeffic = HannahKay(masResult, coeffic, 2, document.HannahKay);
+    // -- Rosenbluth hall--- = 3
     for(i=0;i<window.industrys;i++){ 
       sum = null;
       sum_all = 0;
@@ -283,11 +273,11 @@ $(document).ready(function() {
         }
       }
       if(sum){
-        coeffic[i][4] = 1/(sum*2-1);
+        coeffic[i][3] = 1/(sum*2-1);
       }
     }
     
-    // ------ Entropy ----- =5
+    // ------ Entropy ----- =4
     for(i=0;i<window.industrys;i++){ 
       sum = null;
       sum_all = 0;
@@ -303,11 +293,11 @@ $(document).ready(function() {
         }
       }
      if(sum){ 
-      coeffic[i][5] = -sum;
+      coeffic[i][4] = -sum;
      }
     }
     
-    // ------ Variance of logs ----- =6
+    // ------ Variance of logs ----- =5
     for(i=0;i<window.industrys;i++){ 
       sum = null;
       sum_all = 0;
@@ -326,18 +316,18 @@ $(document).ready(function() {
         }
       }
       if(sumA){
-        coeffic[i][6] = (1/n)*sumA-(1/(n*n))*sumB*sumB;
+        coeffic[i][5] = (1/n)*sumA-(1/(n*n))*sumB*sumB;
       }
     }
     
-    // ------ Gini coefficient ----- =7
+    // ------ Gini coefficient ----- =6
     for(i=0;i<window.industrys;i++){ 
       for(k=0;k<window.firms;k++){ // находим N
         if( masSource[i][k] > 0 ) {
           n = k + 1;
         }
       }
-      coeffic[i][7] = 1-1/(n*coeffic[i][4]);
+      coeffic[i][6] = 1-1/(n*coeffic[i][3]);
     }
     SetTable("Coeff",coeffic);
     return coeffic;

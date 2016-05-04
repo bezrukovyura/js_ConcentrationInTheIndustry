@@ -40,8 +40,7 @@ function PaintTableGraph(y,x) {
 
 /////////////////////////////////// Таблица с коэффициентами
 function PaintTableCoeff(y,x) {
-  var CoeffName = [0,'CR3<input class="CRInput" value="3">',
-                   'CR4',
+  var CoeffName = [0,'CR<input class="CRInput" value="3">',
                    'Hirshman-herfindahl',
                    'Hannah-Kay a=<input class="HannahInput" value="2">',
                    'Rosenbluth/Hall-Tideman',
@@ -49,7 +48,7 @@ function PaintTableCoeff(y,x) {
                    'Variance of logs',
                    'Gini coefficient']
   ScreenOut = '';
-  for(i=0;i<8;i++) {
+  for(i=0;i<7;i++) {
     ScreenOut += '<tr>';
     if(i == 0) {
       ScreenOut += '<td></td>';

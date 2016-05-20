@@ -78,6 +78,16 @@ transition: opacity 1s ease-in;
 }
 .copirate a {
   text-decoration: none;
-  border-bottom: 1px dashed;
-  color: #949494;
+  color: #000;
+}
+.copirate a:hover {
+    text-decoration: none;
+    border-bottom: 1px dashed;
+    color: #949494;
+}
+.copirate img {
+    width: 72px;
+    top: 31px;
+    margin: 0px 7px;
+    position: relative;
 }

@@ -335,9 +335,32 @@ $(document).ready(function() {
   }
   
   function SetTable(Pref,MasIn){
+    MinMax = [0,0,0,0,800,0,0];
+    MinMaxK = [];
     for(i=0;i<8;i++) {
-      for(j=0;j<window.industrys;j++) {
+      for(j=0;j<window.industrys;j++) { // Находим максимумы
         if(MasIn[j][i]) {
+          if(i == 4){
+            if(MasIn[j][i] < MinMax[i]) {
+              MinMax[i] = MasIn[j][i];
+              MinMaxK[i] = j;
+            }
+
+          }
+          else {
+            if(MasIn[j][i] > MinMax[i]) {
+              MinMax[i] = MasIn[j][i];
+              MinMaxK[i] = j;
+            }
+          }
+        }
+      }
+      for(j=0;j<window.industrys;j++) {
+        $("#"+Pref+"_Col"+j+"_Row"+i).css({'background':'#fff','color':'#000'});
+        if(MasIn[j][i]) {
+          if(MinMaxK[i] == j){
+            $("#"+Pref+"_Col"+j+"_Row"+i).css({'background':'#F18282','color':'#fff'});
+          }
           $("#"+Pref+"_Col"+j+"_Row"+i).val((MasIn[j][i]).toFixed(3));
         }
         else {
@@ -345,6 +368,7 @@ $(document).ready(function() {
         }
       }
     }
+    return MinMax;
   }
   
   
@@ -375,19 +399,19 @@ $(document).ready(function() {
     }
     return coeffic;
   }
-  
-$("#FontFamily").click(function() {
-  tmp = '<style> body *{ font-family:';
-  tmp += $("#FontFamily").val();
-  tmp += ' !important;}</style>';
-  $( "#del_font_family" ).html(tmp);
-});
-$("#FontSize").click(function() {
-  tmp = '<style> body *{ font-size:';
-  tmp += $("#FontSize").val();
-  tmp += 'px !important;}</style>';
-  $( "#del_font_size" ).html(tmp);
-});
-  
+    
+  $("#FontFamily").click(function() {
+    tmp = '<style> body *{ font-family:';
+    tmp += $("#FontFamily").val();
+    tmp += ' !important;}</style>';
+    $( "#del_font_family" ).html(tmp);
+  });
+  $("#FontSize").click(function() {
+    tmp = '<style> body *{ font-size:';
+    tmp += $("#FontSize").val();
+    tmp += 'px !important;}</style>';
+    $( "#del_font_size" ).html(tmp);
+  });
+    
 });  
   
